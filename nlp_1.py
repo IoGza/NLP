@@ -45,32 +45,81 @@ blob = TextBlob(text)
 
 # print(blob.detect_language())
 
-# japanese = blob.translate(to="jp")
+# japanese = blob.translate(to="ja")
 # print(japanese)
+
+
+# index = Word("index")
+
+# print(index.pluralize())
+
+# cacti = Word("cacti")
+
+# print(cacti.singularize())
+
+# animals = TextBlob("dog cat fish bird").words
+
+# print(animals.pluralize())
+
+# word = Word("theyr")
+
+# print(word.spellcheck())
+
+# corrected_word = word.correct()
+
+# sentence = TextBlob("Ths sentenze hsa misspelled wordsa.")
+
+# corrected_sentence = sentence.correct()
+
+# print(corrected_word)
+# print(corrected_sentence)
+
+# Stemming algorithms work by cutting off the end or beginning of the word, taking
+# Common prefixes and suffixes that can be found in an inflected word
+
+# Varieties = would be variety
+# Studies = would be studi
+
+# Lemmatization, on the other hand, takes into consideration the morphologival analysis of the words
+
+# Varieties = would be variety
+# studies = would be study
+
 
 from textblob import Word
 
-index = Word("index")
+word1 = Word("studies")
+word2 = Word("varieties")
 
-print(index.pluralize())
+# print(word1.lemmatize())
+# print(word2.lemmatize())
 
-cacti = Word("cacti")
+happy = Word("happy")
 
-print(cacti.singularize())
+# print(happy.definitions)
+"""
+for synset in happy.synsets:
+    print(synset)
+    for lemma in synset.lemmas():
+        print(lemma)
+        # print(lemma.name())
+lemmas = happy.synsets[0].lemmas()
+for lemma in lemmas[0].antonyms():
+    print(lemma.name())
+"""
+import nltk
 
-animals = TextBlob("dog cat fish bird").words
+# nltk.download("stopwords")
 
-print(animals.pluralize())
+from nltk.corpus import stopwords
 
-word = Word("theyr")
+stops = stopwords.words("english")
+blob = TextBlob("Toda is a beautiful day")
 
-print(word.spellcheck())
 
-corrected_word = word.correct()
+# print(blob.words)
+# print(stops)
 
-sentence = TextBlob("Ths sentenze hsa misspelled wordsa.")
+stop_words_removed = [i for i in blob.words if i not in stops]
 
-corrected_sentence = sentence.correct()
-
-print(corrected_word)
-print(corrected_sentence)
+print(stop_words_removed)
