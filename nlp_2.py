@@ -57,12 +57,32 @@ df = pd.DataFrame(top20, columns=["word", "count"])
 
 # print(df)
 
-import matplot.lib.pyplot as plt
+import matplotlib.pyplot as plt
 
 df.plot.bar(
-    x="word", y="count", rot=0, legend=False, colot=["y", "c", "m", "b", "g", "r"]
+    x="word", y="count", rot=0, legend=False, color=["y", "c", "m", "b", "g", "r"]
 )
 
 plt.gcf().tight_layout()
 
-plt.show()
+# plt.show()
+
+
+from pathlib import Path
+import imageio
+from wordcloud import WordCloud
+
+text = Path("RomeoAndJuliet.txt").read_text()
+print(text)
+
+mask_image = imageio.imread("mask_heart.png")
+
+wordcloud = WordCloud(colormap="prism", mask=mask_image, background_color="white")
+
+wordcloud = wordcloud.generate(text)
+
+wordcloud = wordcloud.to_file("RomeoAndJulietHeart.png")
+
+plt.imshow(wordcloud)
+print("done")
+
