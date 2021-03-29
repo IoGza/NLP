@@ -37,7 +37,7 @@ items = [item for item in items if item[0] not in stops]
 # print(items[:10])
 
 """
-# To determine the top 20 words, sort the uples in items in descending order 
+# To determine the top 20 words, sort the tuples in items in descending order 
 """
 
 from operator import itemgetter
@@ -51,7 +51,7 @@ sorted_items = sorted(items, key=itemgetter(1), reverse=True)
 
 top20 = sorted_items[:20]
 
-# print(top20)
+print(top20)
 
 df = pd.DataFrame(top20, columns=["word", "count"])
 
@@ -85,4 +85,3 @@ wordcloud = wordcloud.to_file("RomeoAndJulietHeart.png")
 
 plt.imshow(wordcloud)
 print("done")
-
